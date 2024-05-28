@@ -1,0 +1,50 @@
+<div class="container mtt">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card p-4 mb-5">
+                <form action="/posters" method="post">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">E'longlar sarlavhasi</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Noutbuk Acer">
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Narx (so'mda)</label>
+                        <input type="number" class="form-control" id="amount" name="amount" placeholder="500 000">
+                    </div>
+                    <div class="mb-3">
+                        <label for="regions" class="form-label">Hudud</label>
+                        <select name="region" id="regions" class="form form-select" aria-label="Default select example">
+                            <option selected>Hududni tanlang</option>
+                            <option value="Toshkent">Toshkent</option>
+                            <option value="Andijon">Andijon</option>
+                            <option value="Buxoro">Buxoro</option>
+                            <option value="Farg'ona">Farg'ona</option>
+                            <option value="Guliston">Guliston</option>
+                            <option value="Jizzax">Jizzax</option>
+                            <option value="Namangan">Namangan</option>
+                            <option value="Nukus">Nukus</option>
+                            <option value="Qarshi">Qarshi</option>
+                            <option value="Qashqadaryo">Qashqadaryo</option>
+                            <option value="Samarqand">Samarqand</option>
+                            <option value="Surxondaryo">Surxondaryo</option>
+                            <option value="Xorazm">Xorazm</option>
+                            <option value="Termiz">Termiz</option>
+                            <option value="Navoiy">Navoiy</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Rasm tanlang</label>
+                        <input type="text" class="form-control" id="iamge" name="iamge" placeholder="500 000">
+                    </div>
+                    <div class="mb-3">
+                        <label for="describe" class="form-label">Ta'rif</label>
+                        <textarea name="describe" id="describe"></textarea>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Kiritish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
