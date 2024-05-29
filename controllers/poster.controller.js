@@ -1,4 +1,4 @@
-const {addNewPosterToDB, getAllPosters, getPosterById} = require('../config/posters')
+const {addNewPosterToDB, getAllPosters, getPosterById, editPosterById, deletePosterById} = require('../config/posters')
 const {v4} = require('uuid')
 
 const getPostersPage = async (req, res) => {
@@ -32,5 +32,39 @@ const addNewPoster = async (req, res) => {
     res.redirect('/')
 }
 
+const getEditPosterPage = async (req, res) => {
+    try {
+        const poster = await getPosterById(req.params.id)
+        res.render('poster/edit-poster', {
+            title: "Edit poster"
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-module.exports = {getPostersPage, addNewPosterPage, addNewPoster, getOnePoster}
+const updatePoster = async (req, res) => {
+    try {
+        const editedPoster = {
+            title: req.body.title,
+            image: req.body.image,
+            amount: req.body.amount,
+            region: req.body.region,
+            description: req.body.description
+        }
+        await editPosterById(req.params.id, editedPoster)
+        res.redirect('/posters')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const deletePoster = async (req, res) => {
+    try {
+        await deletePosterById(req.params.id)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+module.exports = {getPostersPage, addNewPosterPage, addNewPoster, getOnePoster, getEditPosterPage, updatePoster, deletePoster}

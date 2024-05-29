@@ -2,18 +2,19 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card p-4 mb-5">
-                <form action="/posters" method="post">
+                {{#if poster}}
+                <form action="/posters/{{poster.id}}/edit" method="post">
                     <div class="mb-3">
-                        <label for="title" class="form-label">E'longlar sarlavhasi</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Noutbuk Acer">
+                        <label for="title" class="form-label">E'lon sarlavhasi</label>
+                        <input type="text" name="title" id="title" value="{{poster.title}}" class="form-control" placeholder="Noutbuk Acer">
                     </div>
                     <div class="mb-3">
-                        <label for="title" class="form-label">Narx (so'mda)</label>
-                        <input type="number" class="form-control" id="amount" name="amount" placeholder="500 000">
+                        <label for="amount" class="form-label">Narxi (so'm)</label>
+                        <input type="text" name="amount" id="amount" value="{{poster.amount}}" class="form-control" placeholder="Miqdor">
                     </div>
                     <div class="mb-3">
                         <label for="regions" class="form-label">Hudud</label>
-                        <select name="region" id="regions" class="form form-select" aria-label="Default select example">
+                        <select name="region" id="regions"  class="form form-select" aria-label="Default select example">
                             <option selected>Hududni tanlang</option>
                             <option value="Toshkent">Toshkent</option>
                             <option value="Andijon">Andijon</option>
@@ -34,16 +35,17 @@
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Rasm tanlang</label>
-                        <input type="text" class="form-control" id="iamge" name="iamge" placeholder="500 000">
+                        <input type="text" value="{{poste.image}}" class="form-control" id="iamge" name="iamge" placeholder="500 000">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Ta'rif</label>
-                        <textarea name="description" id="description"></textarea>
+                        <textarea name="description" name="description" id="description">{{poster.description}}</textarea>
                     </div>
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Kiritish</button>
+                        <button type="submit" class="btn btn-primary">O'zgartirish</button>
                     </div>
                 </form>
+                {{/if}}
             </div>
         </div>
     </div>
