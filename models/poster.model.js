@@ -29,7 +29,7 @@ const posterSchema = new Schema({
   },
   visits: {
     type: Number, 
-    default: 0
+    default: 1
   }
 });
 

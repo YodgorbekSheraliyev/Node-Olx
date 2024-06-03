@@ -10,7 +10,7 @@ const getPostersPage = async (req, res) => {
 
 const getOnePoster = async (req, res) => {
   const id = req.params.id;
-  const poster = await Poster.findByIdAndUpdate(id, {inc}).lean();
+  const poster = await Poster.findByIdAndUpdate(id, {$inc: {visits: 1}}, {returning: true}).lean();
   console.log(poster)
   res.render("poster/one", {
     title: poster.title,
@@ -51,7 +51,7 @@ const updatePoster = async (req, res) => {
   try {
     const editedPoster = {
       title: req.body.title,
-      image: req.body.image,
+      image: req.file.filename,
       amount: req.body.amount,
       region: req.body.region,
       description: req.body.description,

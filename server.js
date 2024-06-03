@@ -28,6 +28,7 @@ app.set('views', './views')
 // Initialize routes
 app.use('/', require('./routes/home.route'))
 app.use('/posters', require('./routes/poster.route'))
+app.use('/auth', require('./routes/auth.route'))
 
 // Set up port
 const PORT = process.env.PORT || 3000
