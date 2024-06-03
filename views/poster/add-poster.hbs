@@ -1,8 +1,9 @@
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 <div class="container mtt">
     <div class="row">
         <div class="col-lg-12">
             <div class="card p-4 mb-5">
-                <form action="/posters" method="post">
+                <form action="/posters/add" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">E'longlar sarlavhasi</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Noutbuk Acer">
@@ -34,11 +35,15 @@
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Rasm tanlang</label>
-                        <input type="text" class="form-control" id="iamge" name="iamge" placeholder="500 000">
+                        <input type="file" class="form-control" id="image" name="image" placeholder="Image">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Ta'rif</label>
-                        <textarea name="description" id="description"></textarea>
+                        <textarea name="description" id="description">
+                        </textarea>
+                            <script>
+                                ClassicEditor.create(document.querySelector('#description')).catch( error => {console.error( error )});
+                            </script>
                     </div>
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Kiritish</button>

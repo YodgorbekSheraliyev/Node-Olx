@@ -6,7 +6,7 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="card">
-                      <img src="{{poster.image}}" class="rounded mt-lg-3 mb-lg-3 img-fluid img-poster-page mx-auto d-block" alt="...">
+                      <img src="/uploads/{{poster.image}}" class="rounded mt-lg-3 mb-lg-3 img-fluid img-poster-page mx-auto d-block" alt="...">
                     </div>
                   </div>
                 </div>
@@ -21,10 +21,10 @@
                             <h3 class="poster-page-title">{{poster.title}}</h3>
                             <h1 class="poster-page-amount mb-5">{{poster.amount}} SO'M</h1>
                             <h5>Tavsif</h5>
-                            <p>{{poster.description}}</p>
+                            {{{poster.description}}}
                               <hr>
                               <div class="d-flex justify-content-between">
-                                <p>ID: {{post.id}}</p>
+                                <p>ID: {{post._id}}</p>
                                 <p>Ko'rildi: 1025</p>
                               </div>
                           </div>
@@ -53,8 +53,8 @@
                     </div>
                     <a href="#" type="button" class="btn btn-outline-secondary">+998911234567</a>
                     <a href="#" type="button" class="btn mt-3 btn-success">Muallifning boshqa e'lonlari</a>
-                    <a href="/posters/{{id}}/edit" type="button" class="btn mt-3 btn-warning">E'lonni o'zgartirish</a>
-                    <form action="/posters/{{id}}/delete" class="d-grid">
+                    <a href="/posters/{{poster._id}}/edit" type="button" class="btn mt-3 btn-warning">E'lonni o'zgartirish</a>
+                    <form action="/posters/{{poster._id}}/delete" method="post" class="d-grid">
                        <button type="submit" class="btn mt-3 btn-danger">E'lonni o'chirish</button>
                     </form>
                   </div>
@@ -64,11 +64,3 @@
             </div>
           </div>
         </div>
-
-{{#if poster}}
-    {{#each poster}}
-        <h1>{{poster.title}}</h1>
-        <h1>{{poster.amount}}</h1>
-        
-    {{/each}}
-{{/if}}
