@@ -31,7 +31,7 @@ const posterSchema = new Schema({
     type: Number, 
     default: 1
   }
-});
+}, {timestamps: true});
 
 const Poster = model("Poster", posterSchema);
 

@@ -1,6 +1,8 @@
 const express = require('express')
 const path = require('path')
 const dotenv = require('dotenv')
+const session = require('express-session')
+const MongoStore = require('connect-mongodb-session')(session)
 const exphbs = require('express-handlebars')
 const connectDB = require('./config/db')
 
@@ -13,9 +15,23 @@ connectDB()
 // Getting instance of express
 const app = express()
 
+// Initialize session store
+const store = new MongoStore({
+    collection: "user_sessions",
+    uri: process.env.MONGO_URI
+})
+
 // Body parsing middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+
+// Session configuration
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    store: store,
+    resave: false,
+    saveUninitialized: false
+}))
 
 // Static folders
 app.use(express.static(path.join(__dirname, 'public')))
