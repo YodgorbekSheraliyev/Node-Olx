@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const bcrypt = require('bcryptjs')
 
 const getLoginPage = (req, res) => {
   res.render("auth/login", {
@@ -11,7 +12,7 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const userExist = await User.findOne({ email });
     if (userExist) {
-      const matchPassword = userExist.password === password;
+      const matchPassword = await bcrypt.compare(password, userExist.password);
       if (matchPassword) {
         req.session.user = userExist;
         req.session.isLogged = true;
@@ -40,7 +41,9 @@ const registerUser = async (req, res) => {
     return res.redirect("/auth/login");
   }
 
-  await User.create({ email, name, password, phone });
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(password, salt)
+  await User.create({ email, name, password: hashedPassword, phone });
   res.redirect("/posters");
 };
 
