@@ -42,12 +42,13 @@ app.set('view engine', '.hbs')
 app.set('views', './views')
 
 // Initialize routes
-app.use('/', require('./routes/home.route'))
-app.use('/posters', require('./routes/poster.route'))
-app.use('/auth', require('./routes/auth.route'))
+// app.use('/', require('./routes/home.route'))
+// app.use('/posters', require('./routes/poster.route'))
+// app.use('/auth', require('./routes/auth.route'))
+// app.use('/profile', require('./routes/profile.route'))
 
 // Set up port
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 1000
 
 
 // Listeners
