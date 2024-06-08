@@ -30,6 +30,10 @@ const posterSchema = new Schema({
   visits: {
     type: Number, 
     default: 1
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
   }
 }, {timestamps: true});
 

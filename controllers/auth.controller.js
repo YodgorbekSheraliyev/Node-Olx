@@ -2,9 +2,12 @@ const User = require("../models/user.model");
 const bcrypt = require('bcryptjs')
 
 const getLoginPage = (req, res) => {
-  res.render("auth/login", {
-    title: "Login",
-  });
+  if(!req.session.isLogged){
+    res.render("auth/login", {
+      title: "Login",
+      error: req.flash('error')
+    });
+  }
 };
 
 const loginUser = async (req, res) => {
@@ -18,12 +21,14 @@ const loginUser = async (req, res) => {
         req.session.isLogged = true;
         req.session.save((err) => {
           if (err) throw err;
-          return res.redirect("/profile" + req.session.user.name);
+          return res.redirect("/profile/" + req.session.user._id);
         });
       } else {
+        req.flash("error", 'Parol noto\'g\'ri kiritilgan. Iltimos qaytadan urining!')
         return res.redirect("/auth/login");
       }
     } else {
+      req.flash('error', "Bu email bilan ro'yhdatdan o'tilmagan. Iltimos ro'yhatdan o'ting!")
       return res.redirect("/auth/login");
     }
   } catch (error) {
@@ -35,9 +40,11 @@ const registerUser = async (req, res) => {
   const { email, name, phone, password, password2 } = req.body;
   const userExist = await User.findOne({ email });
   if (userExist) {
+    req.flash('error', "Bu emaildan avval ro'yhatdan o'tilgan. Iltimos boshqa emaildan foydalaning!")
     return res.redirect("/auth/login");
   }
   if (password !== password2) {
+    req.flash('error', "Parollar bir xil emas. Iltimos qaytadan urining!")
     return res.redirect("/auth/login");
   }
 
@@ -48,14 +55,24 @@ const registerUser = async (req, res) => {
 };
 
 const getRegisterPage = (req, res) => {
-  res.render("auth/register", {
-    title: "Register",
-  });
+  if(!req.session.isLogged){
+    res.render("auth/register", {
+      title: "Register",
+      error: req.flash('error')
+    });
+  }
 };
+
+const logout = (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/auth/login')
+  })
+}
 
 module.exports = {
   getLoginPage,
   getRegisterPage,
   loginUser,
   registerUser,
+  logout
 };

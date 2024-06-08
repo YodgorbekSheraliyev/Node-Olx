@@ -2,7 +2,15 @@
           <div class="row">
             <div class="col-lg-8 offset-lg-2">
               <div class="card p-4 mb-5">
-                <form>
+                <form action="/auth/register" method="post">
+                    {{#if error}}
+                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                          <div>
+                            {{error}}
+                          </div>
+                        </div>
+                    {{/if}}
                   <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" name="email" class="form-control" placeholder="example@mail.com" id="email">

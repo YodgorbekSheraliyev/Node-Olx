@@ -3,6 +3,6 @@ const {getProfilePage} = require("../controllers/profile.controller");
 
 const router = Router();
 
-router.get("/:name", getProfilePage);
+router.get("/:id", getProfilePage);
 
 module.exports = router;

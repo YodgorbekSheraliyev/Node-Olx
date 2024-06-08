@@ -24,13 +24,15 @@
                     <hr>
                     <div class="d-flex justify-content-between">
                       <p>ID: {{user._id}}</p>
-                      <p>E'lonlar soni: 10</p>
+                      <p>E'lonlar soni: {{user.posters.length}}</p>
                     </div>
                     {{/if}}
                   </div>
                 </div>
               </div>
-              <a href="/profile/change" class="btn mt-3 btn-success">O'zgartirish</a>
+              {{#if isMe}}
+                <a href="/profile/change" class="btn mt-3 btn-success">O'zgartirish</a>
+              {{/if}}
             </div>
           </div>
         </div>
@@ -49,7 +51,7 @@
                       {{#each posters}}
                         <div class="col-lg-3 mb-3">
                             <div class="card">
-                                <a href="#"><img src="{{image}}" class="card-img-top img-poster" alt="{{title}}"></a>
+                                <a href="/posters/{{_id}}"><img src="{{image}}" class="card-img-top img-poster" alt="{{title}}"></a>
                                 <div class="card-body">
                                 <div class="poster-title-cont">
                                     <a href="#" class="poster-link"><span class="card-title poster-title poster-link">{{title}}</span></a>

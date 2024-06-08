@@ -1,4 +1,5 @@
 const Poster = require("../models/poster.model");
+const User = require('../models/user.model')
 
 const getPostersPage = async (req, res) => {
   const posters = await Poster.find().lean();
@@ -11,17 +12,19 @@ const getPostersPage = async (req, res) => {
 
 const getOnePoster = async (req, res) => {
   const id = req.params.id;
-  const poster = await Poster.findByIdAndUpdate(id, {$inc: {visits: 1}}, {returning: true}).lean();
+  const poster = await Poster.findByIdAndUpdate(id, {$inc: {visits: 1}}, {returning: true}).populate('author').lean();
   const user = req.session.user
   console.log(poster)
   res.render("poster/one", {
     title: poster.title,
-    poster,user
+    poster,
+    user,
+    author: poster.author
   });
 };
 
 const addNewPosterPage = (req, res) => {
-  res.render("poster/add-poster", { title: "Add Poster" });
+  res.render("poster/add-poster", { title: "Add Poster", user: req.session.user });
 };
 
 const addNewPoster = async (req, res) => {
@@ -32,14 +35,13 @@ const addNewPoster = async (req, res) => {
       region: req.body.region,
       image: req.file.filename,
       description: req.body.description,
+      author: req.session.user._id
     };
     const newPoster = new Poster(poster);
     await User.findByIdAndUpdate(req.session.user._id, {$push: {posters: newPoster._id}}, {new: true, upsert: true})
-    await newPoster.save((err, posterSaved) => {
-      if(err) throw err
-      const posterId = posterSaved._id
-      res.redirect('/posters/' + posterId)
-    })
+    newPoster.save()
+    res.redirect('/posters/' + newPoster._id)
+
   } catch (error) {
     console.log(error)
   }
