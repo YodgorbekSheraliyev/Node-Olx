@@ -13,25 +13,25 @@
                   <div class="search-filter">
                     <div class="search-item m-2">
                       <label for="category" class="form-label">Kategoriya</label>
-                      <select class="form-select mx-2" id="category" aria-label="Default select example">
-                        <option selected>Kategoriyani tanlang</option>
-                        <option value="1">Ko'chmas mulk</option>
-                        <option value="2">Transport</option>
-                        <option value="3">Elektronika</option>
-                        <option value="4">Ish o'rinlari</option>
+                      <select class="form-select mx-2" name="category" id="category" aria-label="Default select example">
+                        <option selected disabled>Kategoriyani tanlang</option>
+                        <option value="realty">Ko'chmas mulk</option>
+                        <option value="transport">Transport</option>
+                        <option value="electronics">Elektronika</option>
+                        <option value="jobs">Ish o'rinlari</option>
                       </select>
                     </div>
                     <div class="search-item m-2">
                       <label for="amount" class="form-label">Narxi</label>
                       <div class="input-group">
-                        <input type="text" id="amount" class="form-control price-input-filter mx-2" placeholder="dan">
-                        <input type="text" id="amount" class="form-control price-input-filter mx-2" placeholder="gacha">
+                        <input type="text" id="amount" name="from" class="form-control price-input-filter mx-2" placeholder="dan">
+                        <input type="text" id="amount" name="to" class="form-control price-input-filter mx-2" placeholder="gacha">
                       </div>
                     </div>
                     <div class="search-item m-2">
                       <label for="region" class="form-label">Hudud</label>
-                      <select class="form-select" id="region" aria-label="Default select example">
-                        <option selected>Hududni tanlang</option>
+                      <select class="form-select" name="region" id="region" aria-label="Default select example">
+                        <option selected disabled>Hududni tanlang</option>
                         <option value="Toshkent">Toshkent</option>
                         <option value="Qarshi">Qarshi</option>
                         <option value="Buxoro">Buxoro</option>

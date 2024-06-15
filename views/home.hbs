@@ -10,7 +10,7 @@
                     <p>Bu sayt orqali siz o'z e'lonlaringizni bepulga joylashtirib borishingiz
                     mumkin bo'ladi. Istalgan kategoriyangizni tanlang va o'zingiz xohlagan
                     e'loningizni joylashtiring</p>
-                    <a class="btn btn-primary" href="#!">E'lon joylashtirish</a>
+                    <a class="btn btn-primary" href="/posters/add">E'lon joylashtirish</a>
                 </div>
             </div>
             <!-- Call to Action-->
@@ -103,7 +103,7 @@
                             {{#each posters}}
                                 <div class="col-lg-3 mb-3">
                                     <div class="card">
-                                        <a href="posters/{{_id}}"><img src="{{image}}" class="card-img-top img-poster" alt="{{title}}"></a>
+                                        <a href="posters/{{_id}}"><img src="/uploads/{{image}}" class="card-img-top img-poster" alt="{{title}}"></a>
                                         <div class="card-body">
                                             <div class="poster-title-cont">
                                                 <a href="posters/{{_id}}" class="poster-link"><span class="card-title poster-title poster-link"> {{title}}</span></a>

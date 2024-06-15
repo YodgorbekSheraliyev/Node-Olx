@@ -1,5 +1,6 @@
 const Poster = require("../models/poster.model");
-const User = require('../models/user.model')
+const User = require('../models/user.model');
+const filtering = require("../utils/filtering");
 
 
 const getPostersPage = async (req, res) => {
@@ -19,8 +20,20 @@ const getPostersPage = async (req, res) => {
       })
     }
 
+    if(req.query){
+      const {category, from, to, region} = req.body
+      const filterings = filtering(category, from, to, region)
+      const posters = await Poster.find(filterings).lean();
+      return res.render('poster/searchResults', {
+        title: "Posters",
+        posters: posters.reverse(),
+        user: req.session.user,
+        querySearch: req.query.search
+      })
+    }
+
     const posters = await Poster.find().lean();
-    res.render("poster/posters", {
+    return res.render("poster/posters", {
       title: "Posters",
       posters: posters.reverse(),
       user: req.session.user

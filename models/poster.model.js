@@ -31,6 +31,11 @@ const posterSchema = new Schema({
     type: Number, 
     default: 1
   },
+  category: {
+    type: String,
+    required: true,
+    enum: ["realty", "transport", "electronic", "jobs"]
+  },
   author: {
     type: Schema.Types.ObjectId,
     ref: "User"
