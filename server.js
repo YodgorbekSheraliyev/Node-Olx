@@ -6,6 +6,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
 const moment = require('moment')
 const exphbs = require('express-handlebars')
+const paginate = require('handlebars-paginate')
 const connectDB = require('./config/db')
 
 // Importing ENV variables
@@ -45,7 +46,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.engine('.hbs', exphbs.engine({extname: '.hbs', defaultLayout: "main", helpers: {
     formatDate: function(time, format){
         return moment(time).format(format)
-    }
+    },
+    paginate: paginate
 }}))
 app.set('view engine', '.hbs')
 app.set('views', './views')

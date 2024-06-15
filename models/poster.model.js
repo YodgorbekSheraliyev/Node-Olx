@@ -34,7 +34,7 @@ const posterSchema = new Schema({
   category: {
     type: String,
     required: true,
-    enum: ["realty", "transport", "electronic", "jobs"]
+    enum: ["realty", "transport", "electronics", "jobs"]
   },
   author: {
     type: Schema.Types.ObjectId,
