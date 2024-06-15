@@ -38,10 +38,11 @@ const loginUser = async (req, res) => {
 
 const registerUser = async (req, res) => {
   const { email, name, phone, password, password2 } = req.body;
+  console.log(req.body)
   const userExist = await User.findOne({ email });
   if (userExist) {
     req.flash('error', "Bu emaildan avval ro'yhatdan o'tilgan. Iltimos boshqa emaildan foydalaning!")
-    return res.redirect("/auth/login");
+    return res.redirect("/auth/register");
   }
   if (password !== password2) {
     req.flash('error', "Parollar bir xil emas. Iltimos qaytadan urining!")
@@ -50,7 +51,9 @@ const registerUser = async (req, res) => {
 
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
-  await User.create({ email, name, password: hashedPassword, phone });
+  const user = await User.create({ email, name, phone, password: hashedPassword });
+  req.session.user = user
+  req.session.isLogged = true
   res.redirect("/posters");
 };
 
@@ -58,7 +61,7 @@ const getRegisterPage = (req, res) => {
   if(!req.session.isLogged){
     res.render("auth/register", {
       title: "Register",
-      error: req.flash('error')
+      error: req.flash('error'),
     });
   }
 };

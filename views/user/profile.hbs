@@ -1,10 +1,10 @@
- <div class="container mt-5 mtt">
+ <div class="container mt-5 mtt py-5">
       <div class="row">
           <div class="container mb-5">
             <div class="row">
               <div class="col-lg-4">
                 <div class="card">
-                  <img src="./assets/noAvatar.png" style="height: 100%;" alt="">
+                  <img src="/assets/noAvatar.png" style="height: 100%;" alt="">
                 </div>
               </div>
 
@@ -51,10 +51,10 @@
                       {{#each posters}}
                         <div class="col-lg-3 mb-3">
                             <div class="card">
-                                <a href="/posters/{{_id}}"><img src="{{image}}" class="card-img-top img-poster" alt="{{title}}"></a>
+                                <a href="/posters/{{_id}}"><img src="/uploads/{{image}}" class="card-img-top img-poster" alt="{{title}}"></a>
                                 <div class="card-body">
                                 <div class="poster-title-cont">
-                                    <a href="#" class="poster-link"><span class="card-title poster-title poster-link">{{title}}</span></a>
+                                    <a href="/posters/{{_id}}" class="poster-link"><span class="card-title poster-title poster-link">{{title}}</span></a>
                                 </div>
                                 <p class="card-text" style="margin: 0">{{region}}</p>
                                 <p class="card-text">- {{createdAt}}</p>
@@ -70,3 +70,5 @@
               </div>
           </div>
       </div>
+
+      

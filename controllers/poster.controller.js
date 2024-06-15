@@ -1,6 +1,7 @@
 const Poster = require("../models/poster.model");
 const User = require('../models/user.model')
 
+
 const getPostersPage = async (req, res) => {
   const posters = await Poster.find().lean();
   res.render("poster/posters", {
@@ -13,12 +14,18 @@ const getPostersPage = async (req, res) => {
 const getOnePoster = async (req, res) => {
   const id = req.params.id;
   const poster = await Poster.findByIdAndUpdate(id, {$inc: {visits: 1}}, {returning: true}).populate('author').lean();
+
   const user = req.session.user
-  console.log(poster)
+  console.log(user)
+  console.log(poster.author._id)
+
+  const isMe = user._id.toString() == poster.author._id
+  console.log(isMe)
   res.render("poster/one", {
     title: poster.title,
     poster,
     user,
+    isMe,
     author: poster.author
   });
 };
