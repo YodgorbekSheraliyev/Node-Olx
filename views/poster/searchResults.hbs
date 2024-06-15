@@ -1,6 +1,5 @@
 <div class="container mt-5">
           <div class="card my-5 py-4 text-center border-0">
-            <div class="card-body">
               <form class="row g-3" action="/posters" method="get">
                   <label for="search" class="visually-hidden">Qidiruv</label>
                   <input type="text" 
@@ -71,7 +70,7 @@
                             <div class="col-md-9">
                             <div class="card-body flex-poster-body">
                                 <div class="flex-poster-title">
-                                <div class="title-item-one"><a href="/posters/{{_id}}" class="poster-link">
+                                <div class="title-item-one"><a href="/posters/{{id}}" class="poster-link">
                                     <span class="card-title poster-title poster-link poster-flexible">{{title}}</span>
                                 </a></div>
                                 <h5 class="title-item-two">{{amount}} SO'M</h5>
@@ -85,20 +84,7 @@
                     {{else}}
                       <h1>Ma'lumot yo'q</h1>
                     {{/if}}
-                    <nav aria-label="Page navigation example">
-                      <ul class="pagination pagination-lg justify-content-center">
-                        <li class="page-item disabled">
-                          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">Next</a>
-                        </li>
-                      </ul>
-                    </nav>
                   </div>
               </div>
             </div>
-</div>
+        </div>

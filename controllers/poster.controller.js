@@ -3,12 +3,31 @@ const User = require('../models/user.model')
 
 
 const getPostersPage = async (req, res) => {
-  const posters = await Poster.find().lean();
-  res.render("poster/posters", {
-    title: "Posters",
-    posters: posters.reverse(),
-    user: req.session.user
-  });
+  try {
+
+    if(req.query.search){
+      const {search} = req.query
+      const posters = await Poster.searchPartial(search, (err) => {
+        if(err) throw new Error()
+      }).lean()
+    
+      return res.render('poster/searchResults', {
+        title: "Posters",
+        posters: posters.reverse(),
+        user: req.session.user,
+        querySearch: search
+      })
+    }
+
+    const posters = await Poster.find().lean();
+    res.render("poster/posters", {
+      title: "Posters",
+      posters: posters.reverse(),
+      user: req.session.user
+    });
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 const getOnePoster = async (req, res) => {
