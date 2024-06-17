@@ -11,28 +11,29 @@ const getPostersPage = async (req, res) => {
 
     // Redirect if queries page, limit doesn't exist
     if(req.url === '/'){
-      return res.redirect(`/posters?page=1&limit=${pageLimit}`)
+      return res.redirect(`?page=1&limit=${pageLimit}`)
     }
     if(req.query.search){
       const {search} = req.query
-      const posters = await Poster.searchPartial(search, (err) => {
+      const posters = await Poster.searchPartial(search, (err, data) => {
         if(err) throw new Error()
       }).lean()
     
-      return res.render('poster/searchResults', {
-        title: "Posters",
+      return res.status(200).render('poster/searchResults', {
+        title: "Search results",
         posters: posters.reverse(),
         user: req.session.user,
-        querySearch: search
+        querySearch: req.query.search
       })
     }
 
-    if(req.query.page && req.query.limit){
-      const {category, from, to, region} = req.body
+    if(!req.query.page || !req.query.limit){
+      const {category, from, to, region} = req.query
       const filterings = filtering(category, from, to, region)
       const posters = await Poster.find(filterings).lean();
+      // const posters = await Poster.find({region: "Andijon"}).lean();
       return res.render('poster/searchResults', {
-        title: "Posters",
+        title: "Filter results",
         posters: posters.reverse(),
         user: req.session.user,
         querySearch: req.query.search

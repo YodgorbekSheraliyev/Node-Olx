@@ -1,6 +1,10 @@
 const filtering = (category, from, to, region) => {
   let filtering;
 
+  // All fields unchosen
+  if (!category && !from && !to && !region) {
+    filtering = {};
+  }
   // All fields chosen
   if (category && from && to && region) {
     filtering = {
