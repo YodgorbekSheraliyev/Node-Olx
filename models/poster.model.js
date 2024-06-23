@@ -34,7 +34,7 @@ const posterSchema = new Schema({
   category: {
     type: String,
     required: true,
-    enum: ["realty", "transport", "electronic", "jobs"]
+    enum: ["realty", "transport", "electronics", "jobs"]
   },
   author: {
     type: Schema.Types.ObjectId,
@@ -44,10 +44,8 @@ const posterSchema = new Schema({
 
 const Poster = model("Poster", posterSchema);
 
-posterSchema.index({
-  title: "text",
-  description: "text"
-})
+posterSchema.index({title:"text", description: "text"})
+
 
 posterSchema.statics = {
   searchPartial: function(q, callback){

@@ -1,0 +1,40 @@
+ <div class="container mtt">
+          <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+              <div class="card p-4 mb-5">
+                {{#if user}}
+                    <form action="/profile/change" method="post">
+                    {{#if error}}
+                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                          <div>
+                            {{error}}
+                          </div>
+                        </div>
+                    {{/if}}
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="name" value="{{user.name}}" class="form-control" placeholder="Eshmatov Toshmat" id="username">
+                  </div>
+                  <div class="mb-3">
+                    <label for="phone" class="form-label">Phone number</label>
+                    <input type="number" name="phone" value="{{user.phone}}" class="form-control" placeholder="998911234567" id="phone">
+                  </div>
+                  <div class="mb-3">
+                    <label for="oldPassword" class="form-label">Old password</label>
+                    <input type="password" name="oldPassword" class="form-control" id="oldPassword">
+                  </div>
+                  <div class="mb-3">
+                    <label for="newPassword" class="form-label">New password</label>
+                    <input type="password" name="newPassword" class="form-control" id="newPassword">
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Registratsiya</button>
+                  </div>
+                </form>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+       

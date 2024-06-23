@@ -6,6 +6,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
 const moment = require('moment')
 const exphbs = require('express-handlebars')
+const paginate = require('handlebars-paginate')
 const connectDB = require('./config/db')
 
 // Importing ENV variables
@@ -20,7 +21,8 @@ const app = express()
 // Initialize session store
 const store = new MongoStore({
     collection: "user_sessions",
-    uri: process.env.MONGO_URI
+    uri: process.env.MONGO_URI,
+    expires: 200000000
 })
 
 // Body parsing middlewares
@@ -45,7 +47,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.engine('.hbs', exphbs.engine({extname: '.hbs', defaultLayout: "main", helpers: {
     formatDate: function(time, format){
         return moment(time).format(format)
-    }
+    },
+    paginate: paginate
 }}))
 app.set('view engine', '.hbs')
 app.set('views', './views')
@@ -57,7 +60,7 @@ app.use('/auth', require('./routes/auth.route'))
 app.use('/profile', require('./routes/profile.route'))
 
 // Set up port
-const PORT = process.env.PORT || 1000
+const PORT = process.env.PORT || 3000
 
 // Listeners
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))

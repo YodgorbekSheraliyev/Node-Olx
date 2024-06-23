@@ -38,7 +38,6 @@ const loginUser = async (req, res) => {
 
 const registerUser = async (req, res) => {
   const { email, name, phone, password, password2 } = req.body;
-  console.log(req.body)
   const userExist = await User.findOne({ email });
   if (userExist) {
     req.flash('error', "Bu emaildan avval ro'yhatdan o'tilgan. Iltimos boshqa emaildan foydalaning!")
