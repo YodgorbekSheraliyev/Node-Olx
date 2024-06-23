@@ -15,10 +15,11 @@ const getPostersPage = async (req, res) => {
     }
     if(req.query.search){
       const {search} = req.query
-      console.log(search);
-      const posters = await Poster.searchPartial(search, (err, data) => {
-        if(err) throw new Error(err)
-      }).lean()
+      const regExp = new RegExp(String(search).trim(), 'gi')
+      const posters = await Poster.find({$or: [
+        {title: regExp},
+        {description: regExp}
+      ]}).lean()
     
       return res.status(200).render('poster/searchResults', {
         title: "Search results",
