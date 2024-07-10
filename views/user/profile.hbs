@@ -4,7 +4,7 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="card">
-                  <img src="/assets/noAvatar.png" style="height: 100%;" alt="">
+                  <img src="/uploads/{{user.avatar}}" style="height: 100%;" alt="">
                 </div>
               </div>
 
@@ -56,9 +56,9 @@
                                 <div class="poster-title-cont">
                                     <a href="/posters/{{_id}}" class="poster-link"><span class="card-title poster-title poster-link">{{title}}</span></a>
                                 </div>
-                                <p class="card-text" style="margin: 0">{{region}}</p>
-                                <p class="card-text">- {{createdAt}}</p>
-                                <h5 class="card-subtitle mb-2">{{amount}}</h5>
+                                <p class="card-text" style="margin: 0"><b>Manzil: </b>{{region}}</p>
+                                <p class="card-text"><b>Joylangan sana: </b>{{formatDate createdAt "DD/MM/YYYY"}}</p>
+                                <h5 class="card-subtitle mb-2"><b>Narx: </b>{{amount}} so'm</h5>
                                 </div>
                             </div>
                         </div>

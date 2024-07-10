@@ -17,7 +17,7 @@
                     <div class="col-lg-12">
                         <div class="row">
                           <div class="card">
-                            <div class="mb-3"><p class="card-text"><small class="text-muted">Joylangan sana - 11.07.2021 16:45</small></p></div>
+                            <div class="mb-3"><p class="card-text"><small class="text-muted">Joylangan sana - {{formatDate poster.createdAt "DD/MM/YYYY"}}</small></p></div>
                             <h3 class="poster-page-title">{{poster.title}}</h3>
                             <h1 class="poster-page-amount mb-5">{{poster.amount}} SO'M</h1>
                             <h5>Tavsif</h5>
@@ -51,14 +51,15 @@
                         <p>E'lonlar soni: {{author.posters.length}} ta</p>
                       </div>
                     </div>
-                    <a href="#" type="button" class="btn btn-outline-secondary">{{author.phone}}</a>
+                    {{!-- <a href="#" type="button" class="btn btn-outline-secondary">{{author.phone}}</a> --}}
+                    <a href="tel:{{author.phone}}" type="button" class="btn btn-outline-secondary">{{author.phone}}</a>
                     <a href="/profile/{{author._id}}" type="button" class="btn mt-3 btn-success">Muallifning boshqa e'lonlari</a>
                     {{#if isMe}}
                       <a href="/posters/{{poster._id}}/edit" type="button" class="btn mt-3 btn-warning">E'lonni o'zgartirish</a>
-                    {{/if}}
                     <form action="/posters/{{poster._id}}/delete" method="post" class="d-grid">
                        <button type="submit" class="btn mt-3 btn-danger">E'lonni o'chirish</button>
                     </form>
+                    {{/if}}
                   </div>
                 </div>
               </div>

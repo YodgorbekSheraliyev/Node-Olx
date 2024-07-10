@@ -2,7 +2,7 @@
           <div class="row">
             <div class="col-lg-8 offset-lg-2">
               <div class="card p-4 mb-5">
-                <form action="/auth/register" method="post">
+                <form action="/auth/register" method="post" enctype="multipart/form-data">
                     {{#if error}}
                         <div class="alert alert-warning d-flex align-items-center" role="alert">
                           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -23,6 +23,10 @@
                     <label for="phone" class="form-label">Phone number</label>
                     <input type="number" name="phone" value="+998" class="form-control" placeholder="998911234567" id="phone">
                   </div>
+                  <div class="mb-3">
+                    <label for="image" class="form-label">Rasm tanlang</label>
+                    <input type="file" class="form-control" id="image" name="avatar" placeholder="Image">
+                    </div>
                   <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="password">

@@ -50,7 +50,7 @@ const registerUser = async (req, res) => {
 
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
-  const user = await User.create({ email, name, phone, password: hashedPassword });
+  const user = await User.create({ email, name, phone, avatar: req.file.filename, password: hashedPassword });
   req.session.user = user
   req.session.isLogged = true
   res.redirect("/posters");
