@@ -47,6 +47,10 @@ const registerUser = async (req, res) => {
     req.flash('error', "Parollar bir xil emas. Iltimos qaytadan urining!")
     return res.redirect("/auth/login");
   }
+  if (!email | !name | !phone | !password | !password2) {
+    req.flash('error', "Iltimos barchasini to'ldiring")
+    return res.redirect("/auth/register");
+  }
 
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
